@@ -12,7 +12,7 @@ BEGIN {HelloName}
 	Name := '';
 	IF Copy(QueryString, 1, DivPos - 1) = 'name' 
 	THEN 
-	  Name := Copy(QueryString, DivPos + 1, Length(QueryString)+ 1);
+	  Name := Copy(QueryString, DivPos + 1, Length(QueryString) + 1);
 	IF Name <> ''
 	THEN
 		WRITELN('Hello dear, ', Name, '!')
