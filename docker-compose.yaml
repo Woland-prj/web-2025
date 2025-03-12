@@ -1,0 +1,14 @@
+services:
+  nginx:
+    build: .
+    container_name: web-nginx
+    ports:
+      - "8080:80"  # Проброс порта
+    volumes:
+      - ./Lab4:/usr/share/nginx/html:ro,Z  # Монтирование локальной папки
+    networks:
+      - nginx_network
+
+networks:
+  nginx_network:
+    driver: bridge
