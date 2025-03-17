@@ -32,6 +32,19 @@ body {
     background-color: transparent;
     cursor: pointer;
     padding: 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dock__button_active::after {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #222222;
 }
 
 .feed {
@@ -41,7 +54,7 @@ body {
     align-items: center;
     width: 100%;
     gap: 20px;
-    padding-top: 73px;
+    padding: 73px 0;
 }
 
 .post {
@@ -75,16 +88,63 @@ body {
     color: #222222;
 }
 
+.post__edit-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
 .post__image img {
     width: inherit;
     height: inherit;
     object-fit: cover;
+    position: absolute;
 }
 
 .post__image {
     width: 100%;
     height: 474px;
     margin-bottom: 16px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post__image-buttons {
+    width: calc(100% - 16 * 2px);
+    display: flex;
+    justify-content: space-between;
+}
+
+.post__image-button {
+    border: none;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(2px);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.post__image-button object {
+    cursor: pointer;
+}
+
+.post__image-index {
+    font:
+        400 15px/1.29 GolosUI,
+        sans-serif;
+    color: #ffffff;
+    position: absolute;
+    top: 20px;
+    right: 16px;
+    border-radius: 20px;
+    background-color: rgba(34, 34, 34, 0.5);
+    padding: 3px 10px;
+    backdrop-filter: blur(2px);
 }
 
 .post__likes {
@@ -93,15 +153,39 @@ body {
     background: #2222220d;
     width: fit-content;
     font-size: 18px;
-    margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .post__text {
-    font-size: 14px;
-    color: #333;
+    font:
+        400 15px/1.29 GolosUI,
+        sans-serif;
+    color: #222222;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    margin-top: 16px;
+    margin-bottom: 0;
+}
+
+.post__show-text-button {
+    font:
+        400 15px/1.29 GolosUI,
+        sans-serif;
+    color: #808080;
+    cursor: pointer;
+    display: block;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    margin-bottom: 8px;
 }
 
 .post__timestamp {
-    font-size: 12px;
-    color: gray;
+    font:
+        400 14px/1.29 GolosUI,
+        sans-serif;
+    color: rgba(34, 34, 34, 0.5);
 }
