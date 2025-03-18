@@ -5,7 +5,7 @@ services:
     ports:
       - "8080:80"  # Проброс порта
     volumes:
-      - ./Lab4:/usr/share/nginx/html:ro,Z  # Монтирование локальной папки
+      - ./Lab5:/usr/share/nginx/html:ro,Z  # Монтирование локальной папки
     networks:
       - nginx_network
 
