@@ -1,0 +1,122 @@
+body {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    font:
+        400 14px/1.29 GolosUI,
+        sans-serif;
+}
+
+.dock {
+    display: flex;
+    flex-direction: column;
+    width: 4.5em;
+    position: fixed;
+    border-right: 1px solid #2222220d;
+    height: 100vh;
+    z-index: 2;
+}
+
+.dock__item-bar {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.dock__item-bar object {
+    cursor: pointer;
+    z-index: -1;
+}
+
+.dock__button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.dock__button_active::after {
+    content: "";
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #222222;
+}
+
+.profile {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 42px;
+    padding: 73px 0;
+}
+
+.profile__header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 361px;
+}
+
+.profile__avatar {
+    width: 123px;
+    height: 123px;
+    border-radius: 16px;
+    object-fit: cover;
+    margin: 20px 0;
+}
+
+.profile__name {
+    font-weight: 500;
+    font-size: 32px;
+    color: #222222;
+    margin: 0 0 10px 0;
+}
+
+.profile__bio {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: #222222;
+    margin: 0 0 12px 0;
+    text-align: center;
+}
+
+.profile__posts-count {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 15px;
+    line-height: 18px;
+    color: #222222;
+    border-radius: 6px;
+    padding: 6px 10px;
+    background-color: #f2f3f5;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.48px;
+}
+
+.gallery__item {
+    height: 323px;
+    width: 323px;
+}
+
+.gallery__item img {
+    width: inherit;
+    height: inherit;
+    border-radius: 2px;
+    object-fit: cover;
+}
