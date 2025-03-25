@@ -1,11 +1,23 @@
 services:
   nginx:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: web-nginx
     ports:
-      - "8080:80"  # Проброс порта
+      - "8080:80"
     volumes:
-      - ./Lab5:/usr/share/nginx/html:ro,Z  # Монтирование локальной папки
+      - ./Lab6:/var/www/html:ro,Z
+    depends_on:
+      - php
+    networks:
+      - nginx_network
+
+  php:
+    image: php:fpm
+    container_name: web-php
+    volumes:
+      - ./Lab6:/var/www/html:ro,Z
     networks:
       - nginx_network
 
