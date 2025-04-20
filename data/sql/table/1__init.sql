@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS users (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name TEXT NOT NULL,
+  bio TEXT,
+  avatar TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS posts (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+  author_id INT NOT NULL REFERENCES users(id),
+  text TEXT NOT NULL,
+  likes INT NOT NULL DEFAULT 0,
+  created_at DATETIME NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS post_images (
+  post_id INT NOT NULL REFERENCES posts(id),
+  post_index INT NOT NULL DEFAULT 0,
+  image_path TEXT NOT NULL
+);
+

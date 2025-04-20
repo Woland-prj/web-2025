@@ -10,7 +10,6 @@ function validateLength(string $value, int $min, int $max): bool
   return $length >= $min && $length <= $max;
 }
 
-
 function validateDate(int $timestamp): bool
 {
   return $timestamp > 0 && @date('U', $timestamp) == $timestamp;

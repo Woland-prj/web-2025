@@ -20,6 +20,16 @@ services:
       - ./Lab7:/var/www/html:ro,Z
     networks:
       - nginx_network
+  
+  mysql:
+    image: mysql
+    container_name: web-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: blog
+    volumes:
+      - ./data/db/volume:/var/lib/mysql 
 
 networks:
   nginx_network:
