@@ -1,21 +1,23 @@
 CREATE TABLE IF NOT EXISTS users (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name TEXT NOT NULL,
+  name VARCHAR(255) NOT NULL,
   bio TEXT,
-  avatar TEXT NOT NULL
+  avatar VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS posts (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-  author_id INT NOT NULL REFERENCES users(id),
+  author_id INT NOT NULL,
   text TEXT NOT NULL,
   likes INT NOT NULL DEFAULT 0,
-  created_at DATETIME NOT NULL
+  created_at DATETIME NOT NULL,
+  FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS post_images (
-  post_id INT NOT NULL REFERENCES posts(id),
+  post_id INT NOT NULL,
   post_index INT NOT NULL DEFAULT 0,
-  image_path TEXT NOT NULL
+  image_path VARCHAR(255) NOT NULL,
+  PRIMARY KEY (post_id, post_index),
+  FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
 );
-

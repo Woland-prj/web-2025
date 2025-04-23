@@ -7,7 +7,7 @@ function renderPost($post)
       <div class='post'>
             <div class='post__header'>
                 <div class='post__header-name'>
-                    <img class='post__avatar' src='{$post['author']['avatar']}' alt='Аватар {$post['author']['name']}'>
+                    <a href='profile.php?id={$post['author']['id']}'><img class='post__avatar' src='{$post['author']['avatar']}' alt='Аватар {$post['author']['name']}'></a>
                     <span class='post__author'>{$post['author']['name']}</span>
                 </div>
             </div>

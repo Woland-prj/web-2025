@@ -3,13 +3,23 @@ include '../templates/profile.php';
 include '../utils/encoder.php';
 include '../utils/validator.php';
 include '../utils/getter.php';
+include '../db/connection.php';
+include '../db/posts/crud.php';
+include '../db/users/crud.php';
 $id = validateQueryInt('id');
 if (!$id) {
   header("Location: /pages/home.php");
   exit;
 }
-$profiles = loadFromFile("../data/users/users.json");
-$profile = findById($profiles, $id, fn($user) => validateUserJson($user));
+// $profiles = loadFromFile("../data/users/users.json");
+// $profile = findById($profiles, $id, fn($user) => validateUserJson($user));
+$conn = connectToDatabase();
+$profile = getProfile($conn, $id);
+$posts = getPostsByAuthorId($conn, $id);
+$profile['galery'] = array();
+foreach ($posts as $post) {
+  $profile['galery'][] = $post['images'][0];
+}
 
 if (!$profile) {
   header("Location: /pages/home.php");
@@ -30,7 +40,7 @@ if (!$profile) {
 <body>
   <div class="dock">
     <div class="dock__item-bar">
-      <a class="dock__button" href="home.html">
+      <a class="dock__button" href="home.php">
         <object
           data="../images/icons/home.svg"
           type="image/svg+xml"

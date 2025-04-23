@@ -14,10 +14,12 @@ services:
       - nginx_network
 
   php:
-    image: php:fpm
+    build: 
+      context: .
+      dockerfile: ./php/Dockerfile
     container_name: web-php
     volumes:
-      - ./Lab7:/var/www/html:ro,Z
+      - ./Lab8:/var/www/html:ro,Z
     networks:
       - nginx_network
   
@@ -28,8 +30,12 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: rootpass
       MYSQL_DATABASE: blog
+      TZ: Europe/Moscow
+    networks:
+      - nginx_network
     volumes:
-      - ./data/db/volume:/var/lib/mysql 
+      - ./data/db/volume:/var/lib/mysql
+      - ./data/db/db.cnf:/etc/mysql/conf.d/my.cnf 
 
 networks:
   nginx_network:

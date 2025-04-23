@@ -1,7 +1,11 @@
 <?php
 include '../templates/post.php';
 include '../utils/encoder.php';
-$posts = loadFromFile("../data/posts/posts.json");
+include '../db/connection.php';
+include '../db/posts/crud.php';
+// $posts = loadFromFile("../data/posts/posts.json");
+$conn = connectToDatabase();
+$posts = getPosts($conn);
 ?>
 <!doctype html>
 <html lang="ru">
@@ -17,13 +21,13 @@ $posts = loadFromFile("../data/posts/posts.json");
 <body>
   <div class="dock">
     <div class="dock__item-bar">
-      <a class="dock__button dock__button_active" href="home.html">
+      <a class="dock__button dock__button_active" href="home.php">
         <object
           data="../images/icons/home.svg"
           type="image/svg+xml"
           class="dock__button-icon"></object>
       </a>
-      <a class="dock__button" href="profile.html">
+      <a class="dock__button" href="profile.php?id=1">
         <object
           data="../images/icons/profile.svg"
           type="image/svg+xml"

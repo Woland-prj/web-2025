@@ -1,0 +1,23 @@
+version: 3
+
+tasks:
+  run:
+    desc: Run nginx and mysql
+    cmds: 
+      - docker-compose up --build
+  enter-db:
+    desc: Enter to mysql in docker
+    cmds:
+      - docker exec -it web-mysql mysql -uroot -prootpass blog
+  migrate-tables:
+    desc: Migrate posts from data/db/sql/posts
+    cmds:
+      - docker exec -i web-mysql mysql -uroot -prootpass --default-character-set=utf8mb4 blog < data/sql/table/1__init.sql
+  migrate-users:
+    desc: Migrate users from data/db/sql/posts
+    cmds:
+      - docker exec -i web-mysql mysql -uroot -prootpass --default-character-set=utf8mb4 blog < data/sql/users/insertion.sql
+  migrate-posts:
+    desc: Migrate tables from data/db/sql/posts
+    cmds:
+      - docker exec -i web-mysql mysql -uroot -prootpass --default-character-set=utf8mb4 blog < data/sql/posts/insertion.sql
