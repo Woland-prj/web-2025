@@ -46,3 +46,25 @@ INSERT INTO post_images (post_id, image_path) VALUES
 (16, "../images/park.jpg"),
 (17, "../images/maks_bogdan.jpg"),
 (18, "../images/pot.jpg");
+
+INSERT INTO post_images (post_id, post_index, image_path) VALUES
+(18, 1, "../images/flowers.jpg"),
+(17, 1, "../images/house.jpg"),
+(16, 1, "../images/cake.jpg"),
+(15, 1, "../images/rockets_cofee.jpg"),
+(14, 1, "../images/friends.jpg"),
+(13, 1, "../images/book.jpg"),
+(12, 1, "../images/park.jpg"),
+(11, 1, "../images/maks_bogdan.jpg"),
+(10, 1, "../images/pot.jpg");
+
+INSERT INTO post_images (post_id, post_index, image_path) VALUES
+(10, 2, "../images/flowers.jpg"),
+(11, 2, "../images/house.jpg"),
+(12, 2, "../images/cake.jpg"),
+(13, 2, "../images/rockets_cofee.jpg"),
+(14, 2, "../images/friends.jpg"),
+(15, 2, "../images/book.jpg"),
+(16, 2, "../images/park.jpg"),
+(17, 2, "../images/maks_bogdan.jpg"),
+(18, 2, "../images/pot.jpg");

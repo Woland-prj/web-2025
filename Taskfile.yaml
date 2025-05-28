@@ -5,6 +5,10 @@ tasks:
     desc: Run nginx and mysql
     cmds: 
       - docker-compose up --build
+  stop:
+    desc: Stop nginx and mysql
+    cmds: 
+      - docker-compose down
   enter-db:
     desc: Enter to mysql in docker
     cmds:

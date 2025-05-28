@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "avatar": "../images/vanya_denisov_avatar.jpg",
+    "name": "Ваня Денисов",
+    "bio": "Привет! Я системный аналитик в ACME :) Тут моя жизнь только для самых классных!",
+    "galery": [
+      "../images/snowy_street.jpg",
+      "../images/house.jpg",
+      "../images/cake.jpg",
+      "../images/friends.jpg",
+      "../images/rockets_cofee.jpg",
+      "../images/book.jpg",
+      "../images/park.jpg",
+      "../images/maks_bogdan.jpg",
+      "../images/pot.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "avatar": "../images/liza_demina_avatar.jpg",
+    "name": "Лиза Дёмина",
+    "bio": "Привет! Я системный аналитик в ACME :) Тут моя жизнь только для самых классных!",
+    "galery": [
+      "../images/flowers.jpg",
+      "../images/house.jpg",
+      "../images/cake.jpg",
+      "../images/friends.jpg",
+      "../images/rockets_cofee.jpg",
+      "../images/book.jpg",
+      "../images/park.jpg",
+      "../images/maks_bogdan.jpg",
+      "../images/pot.jpg"
+    ]
+  }
+]

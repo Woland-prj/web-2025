@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./Lab7:/var/www/html:ro,Z
+      - ./Lab11:/var/www/html:ro,Z
     depends_on:
       - php
     networks:
@@ -19,7 +19,7 @@ services:
       dockerfile: ./php/Dockerfile
     container_name: web-php
     volumes:
-      - ./Lab8:/var/www/html:ro,Z
+      - ./Lab11:/var/www/html:ro,Z
     networks:
       - nginx_network
   
