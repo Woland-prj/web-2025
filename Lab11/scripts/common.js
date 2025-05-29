@@ -3,5 +3,6 @@ window.onload = function() {
     Array.from(feed.children).forEach(post => {
         createModal(post);
         createSlider(post);
+        createMoreButtonHandler(post);
     });
 }

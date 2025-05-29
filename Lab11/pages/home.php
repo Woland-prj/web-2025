@@ -18,6 +18,7 @@ $posts = getPosts($conn);
   <link rel="stylesheet" href="../styles/home_styles.css" />
   <script src="../scripts/modal.js" defer></script> 
   <script src="../scripts/slider.js" defer></script> 
+  <script src="../scripts/more.js" defer></script> 
   <script src="../scripts/common.js" defer></script> 
 </head>
 

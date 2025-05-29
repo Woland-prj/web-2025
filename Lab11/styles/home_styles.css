@@ -1,6 +1,7 @@
 :root {
     --background-gray: #22222280;
     --white: #ffffff;
+    --gray: #808080;
 }
 
 body {
@@ -189,6 +190,13 @@ body {
     margin-bottom: 0;
 }
 
+.post__text_maximized {
+    display: block;
+    -webkit-box-orient: unset;
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+}
+
 .post__show-text-button {
     font:
         400 15px/1.29 GolosUI,
@@ -199,14 +207,14 @@ body {
     border: none;
     padding: 0;
     background-color: transparent;
-    margin-bottom: 8px;
 }
 
 .post__timestamp {
     font:
         400 14px/1.29 GolosUI,
         sans-serif;
-    color: rgba(34, 34, 34, 0.5);
+    color: var(--gray);
+    margin-top: 8px;
 }
 
 .main_block {
@@ -295,3 +303,4 @@ body {
     width: 10px;
     height: 10px;
 }
+

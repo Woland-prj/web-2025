@@ -1,4 +1,16 @@
 <?php
+include '../utils/words_formatter.php';
+include '../utils/time.php';
+
+function getFormattedCreationDate($post) {
+    $daysAgo = getAgoTime($post['created_at']);
+
+    return match (true) {
+        $daysAgo === 0 => 'сегодня',
+        $daysAgo === 1 => 'вчера',
+        default => "$daysAgo " . pluralForm($daysAgo, 'день', 'дня', 'дней') . " назад",
+    };
+}
 
 function renderPost($post)
 {
@@ -8,7 +20,9 @@ function renderPost($post)
         $imgsHtml .= "<img src='{$img}' alt='Post image' class='image__picture'/>";
     }
 
-    $creationDate = date('d', $post['created_at']);
+    $daysAgo = getAgoTime($post['created_at']);
+
+    $creationDateText = getFormattedCreationDate($post);
     echo <<<HTML
         <div class='post'>
             <div class='post__header'>
@@ -32,7 +46,8 @@ function renderPost($post)
             <div class='post__footer'>
                 <div class='post__likes'>❤️ <span class='post__likes-count'>{$post['likes']}</span></div>
                 <p class='post__text'>{$post['text']}</p>
-                <span class='post__timestamp'>{$creationDate} дня назад</span>
+                <div class='post__show-text-button'>ещё</div>
+                <div class='post__timestamp'>{$creationDateText}</div>
             </div>
       </div>
   HTML;
