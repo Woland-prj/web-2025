@@ -97,3 +97,20 @@ function validatePostJson(array $post): bool
     validateDate($post['created_at']) &&
     validateArray($post['images'], $validateImageType, $validateImageLength);
 }
+
+function validateLoginRequest(array $login_request): bool
+{
+  return isset(
+    $login_request['email'],
+    $login_request['password'],
+  ) &&
+    validateType($login_request['email'], 'string') &&
+    validateLength($login_request['email'], 1, 50) &&
+    validateEmail($login_request['email']) &&
+    validateType($login_request['password'], 'string') &&
+    validateLength($login_request['password'], 1, 100);
+}
+
+function validateEmail(string $email): bool {
+  return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
+}

@@ -18,6 +18,8 @@ services:
       context: .
       dockerfile: ./php/Dockerfile
     container_name: web-php
+    environment:
+      APP_SALT: testSalt
     volumes:
       - ./Lab11:/var/www/html:ro,Z
     networks:
