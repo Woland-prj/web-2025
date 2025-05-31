@@ -1,4 +1,6 @@
 <?php
+include_once '../service/login_service.php';
+
 header("Content-Type: application/json");
 
 $method = $_SERVER['REQUEST_METHOD'];
@@ -8,10 +10,4 @@ if ($method !== 'POST') {
     exit();
 }
 
-$data = json_decode(file_get_contents('php://input'), true);
-
-if (!$data) {
-    http_response_code(400); // Bad Request
-    echo json_encode(['message' => 'Invalid JSON']);
-    exit();
-}
+logout();

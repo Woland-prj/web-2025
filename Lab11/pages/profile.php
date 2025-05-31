@@ -8,13 +8,13 @@ include '../db/posts/crud.php';
 include '../db/users/crud.php';
 $id = validateQueryInt('id');
 if (!$id) {
-  header("Location: /pages/home.php");
+  header("Location: /home");
   exit;
 }
 // $profiles = loadFromFile("../data/users/users.json");
 // $profile = findById($profiles, $id, fn($user) => validateUserJson($user));
 $conn = connectToDatabase();
-$profile = getProfile($conn, $id);
+$profile = getProfileById($conn, $id);
 $posts = getPostsByAuthorId($conn, $id);
 $profile['galery'] = array();
 foreach ($posts as $post) {
@@ -40,13 +40,13 @@ if (!$profile) {
 <body>
   <div class="dock">
     <div class="dock__item-bar">
-      <a class="dock__button" href="home.php">
+      <a class="dock__button" href="home">
         <object
           data="../images/icons/home.svg"
           type="image/svg+xml"
           class="dock__button-icon"></object>
       </a>
-      <a class="dock__button dock__button_active" href="profile.php?id=1">
+      <a class="dock__button dock__button_active" href="profile?id=1">
         <object
           data="../images/icons/profile.svg"
           type="image/svg+xml"

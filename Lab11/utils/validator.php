@@ -114,3 +114,18 @@ function validateLoginRequest(array $login_request): bool
 function validateEmail(string $email): bool {
   return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
 }
+
+function validateCreatePostRequest(array $create_post_request) : bool {
+  return isset(
+    $create_post_request['text'],
+  ) &&
+    validateType($create_post_request['text'], 'string');
+}
+
+function validateLikeRequest(array $like_request): bool {
+  return isset(
+    $like_request['type'],
+  ) &&
+    validateType($like_request['type'], 'string') &&
+    (($like_request['type'] == 'inc') || ($like_request['type'] == 'dec'));
+}

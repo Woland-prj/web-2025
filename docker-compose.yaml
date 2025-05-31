@@ -7,7 +7,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./Lab11:/var/www/html:ro,Z
+      - ./Lab11:/var/www/html:rw
     depends_on:
       - php
     networks:
@@ -21,7 +21,7 @@ services:
     environment:
       APP_SALT: testSalt
     volumes:
-      - ./Lab11:/var/www/html:ro,Z
+      - ./Lab11:/var/www/html:rw
     networks:
       - nginx_network
   

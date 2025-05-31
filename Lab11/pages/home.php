@@ -25,13 +25,13 @@ $posts = getPosts($conn);
 <body>
   <div class="dock">
     <div class="dock__item-bar">
-      <a class="dock__button dock__button_active" href="home.php">
+      <a class="dock__button dock__button_active" href="home">
         <object
           data="../images/icons/home.svg"
           type="image/svg+xml"
           class="dock__button-icon"></object>
       </a>
-      <a class="dock__button" href="profile.php?id=1">
+      <a class="dock__button" href="profile?id=1">
         <object
           data="../images/icons/profile.svg"
           type="image/svg+xml"

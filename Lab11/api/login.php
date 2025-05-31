@@ -1,6 +1,6 @@
 <?php
-include '../service/login_service.php';
-include '../utils/validator.php';
+include_once '../service/login_service.php';
+include_once '../utils/validator.php';
 header("Content-Type: application/json");
 
 $method = $_SERVER['REQUEST_METHOD'];
