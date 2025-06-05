@@ -33,6 +33,8 @@ services:
       MYSQL_ROOT_PASSWORD: rootpass
       MYSQL_DATABASE: blog
       TZ: Europe/Moscow
+    ports:
+      - "3306:3306"
     networks:
       - nginx_network
     volumes:

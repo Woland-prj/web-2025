@@ -20,6 +20,8 @@ if (!isset($_FILES['images']) || !isset($_POST['data'])) {
     exit();
 }
 
+var_dump($_FILES['images']);
+
 $data = json_decode($_POST['data'], true);
 
 if (!$data || !validateCreatePostRequest($data)) {

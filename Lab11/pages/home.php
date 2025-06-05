@@ -37,7 +37,7 @@ $posts = getPosts($conn);
           type="image/svg+xml"
           class="dock__button-icon"></object>
       </a>
-      <a class="dock__button">
+      <a class="dock__button" href="post_creation">
         <object
           data="../images/icons/plus.svg"
           type="image/svg+xml"

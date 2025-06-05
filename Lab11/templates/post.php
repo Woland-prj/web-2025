@@ -6,8 +6,8 @@ function getFormattedCreationDate($post) {
     $daysAgo = getAgoTime($post['created_at']);
 
     return match (true) {
-        $daysAgo === 0 => 'сегодня',
-        $daysAgo === 1 => 'вчера',
+        $daysAgo == 0 => 'сегодня',
+        $daysAgo == 1 => 'вчера',
         default => "$daysAgo " . pluralForm($daysAgo, 'день', 'дня', 'дней') . " назад",
     };
 }

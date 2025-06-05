@@ -3,8 +3,9 @@
 include_once '../db/users/crud.php';
 include_once '../db/connection.php';
 
+const lifetime = 86400;
 const session_params = [
-    'lifetime' => 86400,
+    'lifetime' => lifetime,
     'path' => '/',
     'httponly' => true,
     'samesite' => 'Strict'
@@ -21,11 +22,11 @@ function login(array $login_request) {
         exit();
     }
 
-    $pwd_peppered = hash_hmac('sha256', $login_request['password'], $salt);
+    $pwd_peppered = hash_hmac("sha256", $login_request['password'], $salt);
 
     if (!password_verify($pwd_peppered, $profile['password'])) {
         http_response_code(401);
-        echo json_encode(['message' => 'invalid credentials']);
+        echo json_encode(['message' => 'invalid']);
         exit();
     }
 
@@ -45,7 +46,7 @@ function authByCookie(): array {
     $user_id = $_SESSION['user_id'] ?? null;
 
     if(!$user_id) {
-        http_response_code(403);
+        http_response_code(401); // Unauthorized
         echo json_encode(['message' => 'unauthorized']);
         exit();
     }
@@ -54,7 +55,7 @@ function authByCookie(): array {
     $profile = getProfileById($pdo,$user_id );
 
     if(!$profile) {
-        http_response_code(403);
+        http_response_code(401); // Unauthorized
         echo json_encode(['message' => 'unauthorized']);
         exit();
     }
@@ -70,7 +71,7 @@ function logout() {
     session_unset();
 
     session_destroy();
-    setcookie(session_name(), '', time() - 3600, '/');
+    setcookie(session_name(), '', time() - lifetime, '/');
 }
 
 function rehashPasswords() {
