@@ -1,12 +1,19 @@
+const form = document.querySelector(".post-creation__form");
 const input = document.getElementById("images-input");
 const picture = document.querySelector(".post-creation__picture");
 const textInput = document.querySelector(".post-creation__text-input");
 const submitButton = document.querySelector(".post-creation__submit-button");
 const smileWrapper = document.querySelector(".post-creation__smile-wrapper");
+const notification = document.querySelector(".post-creation__notification");
+const successText = document.querySelector(".post-creation__success-text");
 
 const imageClass = "post-creation__image";
 const submitButtonActiveClass = "post-creation__submit-button_active";
 const smileWrapperHiddenClass = "post-creation__smile-wrapper_hidden";
+const notificationErrorClass = "post-creation__notification_error";
+const notificationSuccessClass = "post-creation__notification_success";
+const successTextVisibleClass = "post-creation__success-text_visible";
+const formHiddenClass = "post-creation__form_hidden";
 
 const sliderWrapperClass = "post-creation__slider";
 const sliderButtonClass = "post-creation__image-button";
@@ -90,11 +97,32 @@ function updatePicture(displayImg) {
     }
 }
 
+function drawSuccessMessage(text) {
+    notification.classList.add(notificationSuccessClass);
+    notification.innerText = text;
+}
+
+function drawErrorMessage(text) {
+    notification.classList.add(notificationErrorClass);
+    notification.innerText = text;
+}
+
+function hideMessage() {
+    notification.classList.remove(notificationSuccessClass);
+    notification.classList.remove(notificationErrorClass);
+}
+
 function fileListener() {
     const files = input.files;
     if (!files.length) {
         updateSubmitButton();
         return;
+    }
+    if ((imageData.length + files.length) > 10) {
+        input.disabled = true;
+        drawSuccessMessage("😎 Вы добавили максимум фото, круто!");
+    } else {
+        hideMessage();
     }
     Array.from(files).forEach(file => {
         const reader = new FileReader();
@@ -105,14 +133,21 @@ function fileListener() {
                 const displayImg = new Image();
                 displayImg.src = URL.createObjectURL(resizedBlob);
                 displayImg.classList.add(imageClass);
-                imageData.push(resizedBlob);
-                updatePicture(displayImg);
-                updateSubmitButton();
+                if(imageData.length < 10) {
+                    imageData.push(resizedBlob);
+                    updatePicture(displayImg);
+                    updateSubmitButton();
+                }
             };
             img.src = e.target.result;
         };
         reader.readAsDataURL(file);
     });
+}
+
+function showSuccess() {
+    successText.classList.add(successTextVisibleClass);
+    form.classList.add(formHiddenClass);
 }
 
 async function submitListener(e) {
@@ -136,7 +171,10 @@ async function sendPostData(postData) {
     console.log("Post result:", result);
 
     if (response.ok) {
-        window.location.href = "/home";
+        showSuccess();
+        console.clear();
+    } else {
+        drawErrorMessage("🤓 Ошибка созания поста")
     }
 }
 
