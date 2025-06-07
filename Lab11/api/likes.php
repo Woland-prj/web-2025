@@ -8,7 +8,7 @@ header("Content-Type: application/json");
 $method = $_SERVER['REQUEST_METHOD'];
 if ($method !== 'PATCH') {
     http_response_code(405); // Method Not Allowed
-    echo json_encode(['message' => 'Request method must be POST']);
+    echo json_encode(['message' => 'Request method must be PATCH']);
     exit();
 }
 
@@ -19,7 +19,15 @@ if (!$post_id) {
     exit();
 }
 
-$requester = authByCookie();
+$auth_result = authByCookie();
+
+if (isset($auth_result['code'])) {
+    http_response_code($auth_result['code']);
+    echo json_encode(($auth_result['message']));
+    exit();
+}
+
+$requester = $auth_result['user'];
 
 $like_request = json_decode(file_get_contents('php://input'), true);
 
@@ -29,9 +37,11 @@ if (!$like_request || !validateLikeRequest($like_request)) {
     exit();
 }
 
-$success = updateLikesCount($requester['id'], $post_id, $like_request);
-if($success) {
-    http_response_code(204); // No Content;
+$likes = updateLikesCount($requester['id'], $post_id, $like_request);
+
+if($likes !== null) {
+    http_response_code(200);
+    echo json_encode(['likes' => $likes]);
 } else {
     http_response_code(500); // Internal Server Error
     echo json_encode(['message' => 'Internal server error']);

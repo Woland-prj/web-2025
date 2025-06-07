@@ -2,7 +2,14 @@
 
 include_once '../service/login_service.php';
 
-//$requester = authByCookie();
+$auth_result = authByCookie();
+
+if (isset($auth_result['code']) && ($auth_result['code'] == 401)) {
+    header("Location: /login");
+    exit();
+}
+
+$requester = $auth_result['user'];
 
 ?>
 
@@ -28,7 +35,7 @@ include_once '../service/login_service.php';
                 type="image/svg+xml"
                 class="dock__button-icon"></object>
         </a>
-        <a class="dock__button" href="profile?id=1">
+        <a class="dock__button" href="profile?id=<?= $requester['id']; ?>">
             <object
                 data="../images/icons/profile.svg"
                 type="image/svg+xml"

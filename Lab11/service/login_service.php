@@ -46,21 +46,23 @@ function authByCookie(): array {
     $user_id = $_SESSION['user_id'] ?? null;
 
     if(!$user_id) {
-        http_response_code(401); // Unauthorized
-        echo json_encode(['message' => 'unauthorized']);
-        exit();
+        return [
+            'code' => 401,
+            'message' => 'invalid credentials'
+        ];
     }
 
     $pdo = connectToDatabase();
     $profile = getProfileById($pdo,$user_id );
 
     if(!$profile) {
-        http_response_code(401); // Unauthorized
-        echo json_encode(['message' => 'unauthorized']);
-        exit();
+        return [
+            'code' => 401,
+            'message' => 'invalid credentials'
+        ];
     }
 
-    return $profile;
+    return [ 'user' => $profile ];
 }
 
 function logout() {

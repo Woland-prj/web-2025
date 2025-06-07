@@ -30,31 +30,35 @@ function createPost(int $author_id, string $text, array $images): array|null {
     } 
 }
 
-function updateLikesCount(int $user_id, int $post_id, array $like_request): bool {
+function updateLikesCount(int $user_id, int $post_id, array $like_request): int|null {
     $pdo = connectToDatabase();
     $post = getPostById($pdo, $post_id);
 
     if(!$post) return false;
 
-    $is_liked = getLikeRecord($pdo, $user_id, $post_id) ? true : false;
+    $is_liked = (bool)getLikeRecord($pdo, $user_id, $post_id);
 
     if($like_request['type'] == 'inc') {
         if(!$is_liked) {
             saveLikeRecord($pdo, $user_id, $post_id);
-            return saveLikes($pdo, $post_id, $post['likes'] + 1) ? true : false;
+            if(saveLikes($pdo, $post_id, $post['likes'] + 1)) {
+                return getLikes($pdo, $post_id);
+            } else return null;
         } else {
-            http_response_code(403); // Forbiden
+            http_response_code(403); // Forbidden
             echo json_encode(['message' => 'Post already liked']);
             exit();
         }
-    } elseif (($like_request['type'] == 'dec') && $is_liked) {
+    } elseif (($like_request['type'] == 'dec')) {
         if($is_liked) {
             deleteLikeRecord($pdo, $user_id, $post_id);
-            return saveLikes($pdo, $post_id, $post['likes'] - 1) ? true : false;
+            if(saveLikes($pdo, $post_id, $post['likes'] - 1)) {
+                return getLikes($pdo, $post_id);
+            } else return null;
         } else {
-            http_response_code(403); // Forbiden
+            http_response_code(403); // Forbidden
             echo json_encode(['message' => 'Post not liked by you']);
             exit();
         }
-    } else return false;
+    } else return null;
 }

@@ -2,6 +2,9 @@
     --background-gray: #22222280;
     --white: #ffffff;
     --gray: #808080;
+    --like-background: #EF53530D;
+    --like-border: #FF000030;
+    --like-text: #740000;
 }
 
 body {
@@ -174,6 +177,12 @@ body {
     width: fit-content;
     font-size: 15px;
     cursor: pointer;
+}
+
+.post__likes_active {
+    background: var(--like-background);
+    border: 1px solid var(--like-border);
+    color: var(--like-text);
 }
 
 .post__text {

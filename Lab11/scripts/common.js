@@ -11,5 +11,6 @@ window.onload = function() {
         createModal(post);
         createSlider(post);
         createMoreButtonHandler(post);
+        createLikesCounter(post);
     });
 }

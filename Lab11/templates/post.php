@@ -12,7 +12,7 @@ function getFormattedCreationDate($post) {
     };
 }
 
-function renderPost($post)
+function renderPost($post,  $likeRecords): void
 {
     $imgsHtml = "";
 
@@ -23,8 +23,12 @@ function renderPost($post)
     $daysAgo = getAgoTime($post['created_at']);
 
     $creationDateText = getFormattedCreationDate($post);
+
+    $liked = array_filter($likeRecords, fn($record) => (string)$record['post_id'] === (string)$post['id']);
+    $likesClass = 'post__likes' . (!empty($liked) ? ' post__likes_active' : '');
+
     echo <<<HTML
-        <div class='post'>
+        <div class='post' id="{$post['id']}">
             <div class='post__header'>
                 <div class='post__header-name'>
                     <a href='profile.php?id={$post['author']['id']}'><img class='post__avatar' src='{$post['author']['avatar']}' alt='Аватар {$post['author']['name']}'></a>
@@ -44,7 +48,7 @@ function renderPost($post)
                 </div>
             </div>
             <div class='post__footer'>
-                <div class='post__likes'>❤️ <span class='post__likes-count'>{$post['likes']}</span></div>
+                <div class="{$likesClass}">❤️ <span class='post__likes-count'>{$post['likes']}</span></div>
                 <p class='post__text'>{$post['text']}</p>
                 <div class='post__show-text-button'>ещё</div>
                 <div class='post__timestamp'>{$creationDateText}</div>

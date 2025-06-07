@@ -6,6 +6,7 @@
         <title>Войти</title>
         <link rel="stylesheet" href="../styles/fonts.css" />
         <link rel="stylesheet" href="../styles/login_styles.css" />
+        <script src="../scripts/login.js" defer></script>
     </head>
 
     <body>

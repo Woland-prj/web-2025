@@ -12,7 +12,15 @@ if ($method !== 'POST') {
     exit();
 }
 
-$requester = authByCookie();
+$auth_result = authByCookie();
+
+if (isset($auth_result['code'])) {
+    http_response_code($auth_result['code']);
+    echo json_encode(($auth_result['message']));
+    exit();
+}
+
+$requester = $auth_result['user'];
 
 if (!isset($_FILES['images']) || !isset($_POST['data'])) {
     http_response_code(400);

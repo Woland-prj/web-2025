@@ -6,6 +6,17 @@ include '../utils/getter.php';
 include '../db/connection.php';
 include '../db/posts/crud.php';
 include '../db/users/crud.php';
+include_once '../service/login_service.php';
+
+$auth_result = authByCookie();
+
+if (isset($auth_result['code']) && ($auth_result['code'] == 401)) {
+    header("Location: /login");
+    exit();
+}
+
+$requester = $auth_result['user'];
+
 $id = validateQueryInt('id');
 if (!$id) {
     header("Location: /home");
@@ -46,7 +57,7 @@ if (!$profile) {
                 type="image/svg+xml"
                 class="dock__button-icon"></object>
         </a>
-        <a class="dock__button dock__button_active" href="profile?id=1">
+        <a class="dock__button dock__button_active" href="profile?id=<?= $requester['id']; ?>">
             <object
                 data="../images/icons/profile.svg"
                 type="image/svg+xml"

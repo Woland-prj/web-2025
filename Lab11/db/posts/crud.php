@@ -108,7 +108,7 @@ function getPostById($pdo, $authorId) {
 }
 
 
-function getPosts($pdo) {
+function getPosts($pdo): array {
     $stmt = $pdo->query("
         SELECT 
             posts.id AS post_id,
@@ -151,6 +151,13 @@ function getPosts($pdo) {
     return array_values($posts);
 }
 
+function getLikes($pdo, $postId) {
+    $stmt = $pdo->prepare("SELECT likes FROM posts WHERE id = ?");
+    $stmt->execute([$postId]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row['likes'];
+}
+
 // UPDATE
 function updatePost($pdo, $postId, $newText) {
     $stmt = $pdo->prepare("UPDATE posts SET text = ? WHERE id = ?");
@@ -162,7 +169,13 @@ function saveLikes($pdo, $postId, $count) {
     return $stmt->execute([$count, $postId]);
 }
 
-function getLikeRecord($pdo, $userId, $postId ) {
+function getLikeRecordsByUserId($pdo, $userId) {
+    $stmt = $pdo->prepare("SELECT user_id, post_id FROM post_likes WHERE user_id = ?");
+    $stmt->execute([$userId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getLikeRecord($pdo, $userId, $postId) {
     $stmt = $pdo->prepare("SELECT user_id, post_id FROM post_likes WHERE user_id = ? AND post_id = ?");
     $stmt->execute([$userId, $postId]);
     return $stmt->fetch(PDO::FETCH_ASSOC);
