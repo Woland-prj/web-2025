@@ -22,7 +22,7 @@
             <form class="login__form">
                 <div class="login__notification"></div>
                 <label class="login__label" for="email">Электропочта</label>
-                <input class="login__input" type="email" id="email" />
+                <input class="login__input" type="text" id="email" />
                 <span class="login__hint"
                     >Введите электропочту в формате *****@***.**</span
                 >

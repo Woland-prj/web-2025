@@ -183,6 +183,14 @@ body {
     width: fit-content;
     font-size: 15px;
     cursor: pointer;
+    border: 1px solid transparent;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.post__likes-count {
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .post__likes_active {
