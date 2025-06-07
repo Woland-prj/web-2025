@@ -1,8 +1,40 @@
+const notificationSuccessClass = "login__notification_success";
+const notificationErrorClass = "login__notification_error";
+
+function drawSuccessMessage(text) {
+    const notification = document.querySelector(".login__notification");
+    notification.classList.add(notificationSuccessClass);
+    notification.innerText = text;
+}
+
+function drawErrorMessage(text) {
+    const notification = document.querySelector(".login__notification");
+    notification.classList.add(notificationErrorClass);
+    notification.innerText = text;
+}
+
+function hideMessage() {
+    const notification = document.querySelector(".login__notification");
+    notification.classList.remove(notificationSuccessClass);
+    notification.classList.remove(notificationErrorClass);
+}
+
 async function loginListener(e) {
     e.preventDefault();
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
+
+    if (!email || !password) {
+        drawErrorMessage("🤓️ Поля обязательные");
+        return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        drawErrorMessage("🤥 Неверный формат электропочты");
+        return;
+    }
 
     try {
         const response = await fetch("http://localhost:8080/api/login.php", {
@@ -24,8 +56,7 @@ async function loginListener(e) {
         }
     } catch (error) {
         console.error("Error:", error);
-        document.querySelector(".login__error").textContent = "Ошибка соединения с сервером";
-        document.querySelector(".login__error").style.display = "block";
+        drawErrorMessage("🤥 Не те логин или пароль...")
     }
 }
 

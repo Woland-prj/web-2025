@@ -23,6 +23,7 @@ $requester = $auth_result['user'];
     <link rel="stylesheet" href="../styles/fonts.css" />
     <link rel="stylesheet" href="../styles/post_creation_styles.css" />
     <script src="../scripts/slider.js" defer></script>
+    <script src="../scripts/logout.js" defer></script>
     <script src="../scripts/post_creation.js" defer></script>
 </head>
 
@@ -47,6 +48,9 @@ $requester = $auth_result['user'];
                 type="image/svg+xml"
                 class="dock__button-icon"></object>
         </a>
+    </div>
+    <div class="dock__logout">
+        <img class="dock__button" src="../images/icons/logout.svg" alt="logout button">
     </div>
 </div>
 <div class="post-creation">

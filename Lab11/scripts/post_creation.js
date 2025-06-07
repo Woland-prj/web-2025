@@ -179,6 +179,7 @@ async function sendPostData(postData) {
 }
 
 window.onload = () => {
+    createLogout();
     input.addEventListener("change", fileListener);
     textInput.addEventListener("input", updateSubmitButton);
     submitButton.addEventListener("click", submitListener);

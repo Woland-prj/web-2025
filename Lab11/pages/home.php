@@ -30,7 +30,8 @@ $likeRecords = getLikeRecordsByUserId($conn, $requester['id']);
     <script src="../scripts/slider.js" defer></script>
     <script src="../scripts/more.js" defer></script>
     <script src="../scripts/like.js" defer></script>
-    <script src="../scripts/common.js" defer></script>
+    <script src="../scripts/logout.js" defer></script>
+    <script src="../scripts/home_common.js" defer></script>
 </head>
 
 <body>
@@ -54,6 +55,9 @@ $likeRecords = getLikeRecordsByUserId($conn, $requester['id']);
                 type="image/svg+xml"
                 class="dock__button-icon"></object>
         </a>
+    </div>
+    <div class="dock__logout">
+        <img class="dock__button" src="../images/icons/logout.svg" alt="logout button">
     </div>
 </div>
 <div class="feed" id="feed">

@@ -46,6 +46,8 @@ if (!$profile) {
     <title>Профиль - <?= $profile['name']; ?></title>
     <link rel="stylesheet" href="../styles/fonts.css" />
     <link rel="stylesheet" href="../styles/profile_styles.css" />
+    <script src="../scripts/logout.js" defer></script>
+    <script src="../scripts/profile.js" defer></script>
 </head>
 
 <body>
@@ -69,6 +71,9 @@ if (!$profile) {
                 type="image/svg+xml"
                 class="dock__button-icon"></object>
         </a>
+    </div>
+    <div class="dock__logout">
+        <img class="dock__button" src="../images/icons/logout.svg" alt="logout button">
     </div>
 </div>
 

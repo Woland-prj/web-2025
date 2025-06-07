@@ -7,6 +7,7 @@ const sliderWrapperClass = "post__image";
 
 window.onload = function() {
     let feed = document.getElementById("feed");
+    createLogout();
     Array.from(feed.children).forEach(post => {
         createModal(post);
         createSlider(post);

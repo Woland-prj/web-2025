@@ -20,7 +20,7 @@
                 />
             </div>
             <form class="login__form">
-                <div class="login__error">Error message</div>
+                <div class="login__notification"></div>
                 <label class="login__label" for="email">Электропочта</label>
                 <input class="login__input" type="email" id="email" />
                 <span class="login__hint"

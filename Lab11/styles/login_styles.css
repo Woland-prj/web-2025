@@ -1,3 +1,10 @@
+:root {
+    --error-background: #FFECEC;
+    --error-text: #740000;
+    --success-background: #E5FFD9;
+    --success-text: #004905;
+}
+
 body {
     margin: 0;
     display: flex;
@@ -79,8 +86,29 @@ body {
     color: #808080;
 }
 
-.login__error {
+.login__notification {
+    height: 0;
     display: none;
+    transition: height 0.3s ease;
+    padding: 0 0.75rem;
+    font: 400 15px/1.2 GolosUI, sans-serif;
+    border-radius: 0.63rem;
+}
+
+.login__notification_error {
+    background: var(--error-background);
+    color: var(--error-text);
+    display: block;
+    height: auto;
+    padding: 0.75rem;
+}
+
+.login__notification_success {
+    background: var(--success-background);
+    color: var(--success-text);
+    display: block;
+    height: auto;
+    padding: 0.75rem;
 }
 
 .login__password-container {

@@ -31,6 +31,7 @@ body {
     border-right: 1px solid #2222220d;
     height: 100vh;
     z-index: 2;
+    justify-content: space-between;
 }
 
 .dock__item-bar {
@@ -53,6 +54,11 @@ body {
     align-items: center;
     flex-direction: column;
     gap: 4px;
+}
+
+.dock__logout img {
+    width: 1.5rem;
+    height: auto;
 }
 
 .dock__button_active::after {
